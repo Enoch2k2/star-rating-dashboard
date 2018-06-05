@@ -12,11 +12,23 @@ class TechnicalCoach < ApplicationRecord
       self.ratings.where("rating_type = ?", "AAQ")
     end
 
+    def portfolio_ratings
+      self.ratings.where("rating_type = ?", "1:1")
+    end
+
     def get_aaq_ratings_by_month(month)
       if month != "All"
         self.aaq_ratings.where('extract(month from date) = ?', Date::MONTHNAMES.index(month))
       else
         self.aaq_ratings
+      end
+    end
+
+    def get_portfolio_ratings_by_month(month)
+      if month != "All"
+        self.portfolio_ratings.where('extract(month from date) = ?', Date::MONTHNAMES.index(month))
+      else
+        self.portfolio_ratings
       end
     end
 
@@ -30,6 +42,10 @@ class TechnicalCoach < ApplicationRecord
 
     def self.get_aaq_coaches
       self.select{|tc| tc.aaq_ratings.find{|sg| sg.rating_type == "AAQ"}}
+    end
+
+    def self.get_portfolio_coaches
+      self.select{|tc| tc.portfolio_ratings.find{|sg| sg.rating_type == "1:1"}}
     end
 
     def self.get_study_group_coaches

@@ -1,0 +1,28 @@
+<h1 class="text-center">Portfolio Support Star Ratings <span class="new-line"></span>( <%= @month %> )</h1>
+  <%= form_tag one_on_one_search_path do %>
+    <%= select_tag "month", options_for_select(@months, @month) %>
+    <%= submit_tag "Search", class: "btn btn-default btn-xs" %>
+  <% end %>
+  <div style="height:15px;"></div>
+  <table class="table table-bordered table-hover">
+    <thead>
+      <th class="gray"><h4 class="white-font shadow-text">Technical Coach</h4></th>
+      <th class="gray"><h4 class="white-font shadow-text">1 Star</h4></th>
+      <th class="gray"><h4 class="white-font shadow-text">2 Star</h4></th>
+      <th class="gray"><h4 class="white-font shadow-text">3 Star</h4></th>
+      <th class="gray"><h4 class="white-font shadow-text">4 Star</h4></th>
+      <th class="gray"><h4 class="white-font shadow-text">5 Star</h4></th>
+    </thead>
+    <tbody>
+      <% TechnicalCoach.all.get_portfolio_coaches.sort_by{|tc| tc.name}.each do |tc|%>
+        <tr>
+          <td><h4><%= link_to tc.name, find_tc_one_on_one_path(tc.slug) %></h4></td>
+          <td><h4><%= tc.get_portfolio_ratings_by_month(@month).star_count(1) %> (<%= tc.get_portfolio_ratings_by_month(@month).star_percent(1) %>%)</h4></td>
+          <td><h4><%= tc.get_portfolio_ratings_by_month(@month).star_count(2) %> (<%= tc.get_portfolio_ratings_by_month(@month).star_percent(2) %>%)</h4></td>
+          <td><h4><%= tc.get_portfolio_ratings_by_month(@month).star_count(3) %> (<%= tc.get_portfolio_ratings_by_month(@month).star_percent(3) %>%)</h4></td>
+          <td><h4><%= tc.get_portfolio_ratings_by_month(@month).star_count(4) %> (<%= tc.get_portfolio_ratings_by_month(@month).star_percent(4) %>%)</h4></td>
+          <td><h4><%= tc.get_portfolio_ratings_by_month(@month).star_count(5) %> (<%= tc.get_portfolio_ratings_by_month(@month).star_percent(5) %>%)</h4></td>
+        </tr>
+      <%end%>
+    </tbody>
+  </table>
