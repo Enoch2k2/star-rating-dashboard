@@ -1,10 +1,14 @@
-<h1> Technical Coach Study Group Comments Page (30 days) </h1>
+<h1> Technical Coach Study Group Comments Page (<%= @month %>) </h1>
+<%= form_tag study_group_search_show_path(@tc.slug) do %>
+  <%= select_tag "month", options_for_select(@months, @month) %>
+  <%= submit_tag "Search", class: "btn btn-default btn-xs" %>
+<% end %>
 <h2><%= @tc.name %></h2>
-  <% if @tc.study_group_ratings.filter_by_star(1).length > 0 && @tc.study_group_ratings.filter_by_star(1).find{|rating| !rating.comment.nil?} %>
+  <% if @tc.get_study_group_ratings_by_month(@month).filter_by_star(1).length > 0 && @tc.get_study_group_ratings_by_month(@month).filter_by_star(1).find{|rating| !rating.comment.nil?} %>
     <h2>1 Stars</h2>
     <table class="table table-hover">
       <tbody>
-        <% @tc.study_group_ratings.filter_by_star(1).each do |rating| %>
+        <% @tc.get_study_group_ratings_by_month(@month).filter_by_star(1).each do |rating| %>
           <tr>
             <% if rating.valid_comment %>
               <td><strong><%= rating.parse_date %></strong>: <%= rating.comment %></td>
@@ -14,11 +18,11 @@
       </tbody>
     </table>
   <% end %>
-    <% if @tc.study_group_ratings.filter_by_star(2).length > 0 && @tc.study_group_ratings.filter_by_star(2).find{|rating| !rating.comment.nil?} %>
+    <% if @tc.get_study_group_ratings_by_month(@month).filter_by_star(2).length > 0 && @tc.get_study_group_ratings_by_month(@month).filter_by_star(2).find{|rating| !rating.comment.nil?} %>
     <h2>2 Stars</h2>
     <table class="table table-hover">
       <tbody>
-        <% @tc.study_group_ratings.filter_by_star(2).each do |rating| %>
+        <% @tc.get_study_group_ratings_by_month(@month).filter_by_star(2).each do |rating| %>
           <tr>
             <% if rating.valid_comment %>
               <td><strong><%= rating.parse_date %></strong>: <%= rating.comment %></td>
@@ -28,11 +32,11 @@
       </tbody>
     </table>
   <% end %>
-    <% if @tc.study_group_ratings.filter_by_star(3).length > 0 && @tc.study_group_ratings.filter_by_star(3).find{|rating| !rating.comment.nil?} %>
+    <% if @tc.get_study_group_ratings_by_month(@month).filter_by_star(3).length > 0 && @tc.get_study_group_ratings_by_month(@month).filter_by_star(3).find{|rating| !rating.comment.nil?} %>
     <h2>3 Stars</h2>
     <table class="table table-hover">
       <tbody>
-        <% @tc.study_group_ratings.filter_by_star(3).each do |rating| %>
+        <% @tc.get_study_group_ratings_by_month(@month).filter_by_star(3).each do |rating| %>
           <tr>
             <% if rating.valid_comment %>
               <td><strong><%= rating.parse_date %></strong>: <%= rating.comment %></td>
@@ -42,11 +46,11 @@
       </tbody>
     </table>
   <% end %>
-    <% if @tc.study_group_ratings.filter_by_star(4).length > 0 && @tc.study_group_ratings.filter_by_star(4).find{|rating| !rating.comment.nil?} %>
+    <% if @tc.get_study_group_ratings_by_month(@month).filter_by_star(4).length > 0 && @tc.get_study_group_ratings_by_month(@month).filter_by_star(4).find{|rating| !rating.comment.nil?} %>
     <h2>4 Stars</h2>
     <table class="table table-hover">
       <tbody>
-        <% @tc.study_group_ratings.filter_by_star(4).each do |rating| %>
+        <% @tc.get_study_group_ratings_by_month(@month).filter_by_star(4).each do |rating| %>
           <tr>
             <% if rating.valid_comment %>
               <td><strong><%= rating.parse_date %></strong>: <%= rating.comment %></td>
@@ -56,11 +60,11 @@
       </tbody>
     </table>
   <% end %>
-  <% if @tc.study_group_ratings.filter_by_star(5).length > 0 && @tc.study_group_ratings.filter_by_star(5).find{|rating| !rating.comment.nil?} %>
+  <% if @tc.get_study_group_ratings_by_month(@month).filter_by_star(5).length > 0 && @tc.get_study_group_ratings_by_month(@month).filter_by_star(5).find{|rating| !rating.comment.nil?} %>
     <h2>5 Stars</h2>
     <table class="table table-hover">
       <tbody>
-        <% @tc.study_group_ratings.filter_by_star(5).each do |rating| %>
+        <% @tc.get_study_group_ratings_by_month(@month).filter_by_star(5).each do |rating| %>
           <tr>
             <% if rating.valid_comment %>
               <td><strong><%= rating.parse_date %></strong>: <%= rating.comment %></td>

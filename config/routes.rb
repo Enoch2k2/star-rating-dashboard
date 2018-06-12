@@ -16,15 +16,18 @@ Rails.application.routes.draw do
   ## AAQ ##
   get '/tcs/aaq', to: 'aaq#index', as: "aaq"
   post "/tcs/aaq/search", to: "aaq#search", as: "aaq_search"
+  post "/tcs/aaq/:slug", to: "aaq#search_show", as: "aaq_search_show"
   get '/tcs/aaq/:slug', to: 'aaq#show', as: "find_tc_aaq"
 
   ## Study Groups ##
   get '/tcs/study_group', to: 'study_group#index', as: "study_group"
   post "/tcs/study_group/search", to: "study_group#search", as: "study_group_search"
+  post "/tcs/study_group/:slug", to: "study_group#search_show", as: "study_group_search_show"
   get '/tcs/study_group/:slug', to: 'study_group#show', as: "find_tc_study_group"
 
   ## One On One Support ##
   get '/tcs/one_on_one', to: 'one_on_one#index', as: "one_on_one"
   post "/tcs/one_on_one/search", to: "one_on_one#search", as: "one_on_one_search"
+  post "/tcs/one_on_one/:slug", to: "one_on_one#search_show", as: "one_on_one_search_show"
   get '/tcs/one_on_one/:slug', to: 'one_on_one#show', as: "find_tc_one_on_one"
 end

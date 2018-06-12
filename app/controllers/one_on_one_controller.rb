@@ -7,6 +7,7 @@ class OneOnOneController < ApplicationController
   end
 
   def show
+    @month = "All"
     OneOnOneRatingAdapter.get_ratings
     @tc = TechnicalCoach.find_by_slug(params[:slug])
   end
@@ -14,6 +15,12 @@ class OneOnOneController < ApplicationController
   def search
     @month = params.to_unsafe_h[:month]
     render :index
+  end
+
+  def search_show
+    @month = params.to_unsafe_h[:month]
+    @tc = TechnicalCoach.find_by_slug(params[:slug])
+    render :show
   end
 
   private
