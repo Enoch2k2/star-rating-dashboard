@@ -1,3 +1,93 @@
 <% if user_signed_in? %>
 	<h1>Welcome, <%= current_user.name %>!</h1>
+	<%= form_tag home_search_path do %>
+  <%= select_tag "month", options_for_select(@months, @month) %>
+  <%= submit_tag "Search", class: "btn btn-default btn-xs" %>
+	<% end %>
+	<hr/>
+	<h2>Total Team Star Ratings</h2>
+	<h3>Ask A Question Total Star Frequencies</h3>
+	<table class="table table-hover table-bordered">
+		<thead>
+			<tr>
+				<th class="gray white-font shadow-text">1 Star</th>
+				<th class="gray white-font shadow-text">2 Star</th>
+				<th class="gray white-font shadow-text">3 Star</th>
+				<th class="gray white-font shadow-text">4 Star</th>
+				<th class="gray white-font shadow-text">5 Star</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr height="60px">
+				<td class="td-large"><%= Rating.get_all_aaq_ratings(@month).filter_by_star(1).length %></td>
+				<td class="td-large"><%= Rating.get_all_aaq_ratings(@month).filter_by_star(2).length %></td>
+				<td class="td-large"><%= Rating.get_all_aaq_ratings(@month).filter_by_star(3).length %></td>
+				<td class="td-large"><%= Rating.get_all_aaq_ratings(@month).filter_by_star(4).length %></td>
+				<td class="td-large"><%= Rating.get_all_aaq_ratings(@month).filter_by_star(5).length %></td>
+			</tr>
+			<tr height="60px">
+				<td class="td-large"><%= Rating.get_all_aaq_ratings(@month).star_percent(1) %>%</td>
+				<td class="td-large"><%= Rating.get_all_aaq_ratings(@month).star_percent(2) %>%</td>
+				<td class="td-large"><%= Rating.get_all_aaq_ratings(@month).star_percent(3) %>%</td>
+				<td class="td-large"><%= Rating.get_all_aaq_ratings(@month).star_percent(4) %>%</td>
+				<td class="td-large"><%= Rating.get_all_aaq_ratings(@month).star_percent(5) %>%</td>
+			</tr>
+		</tbody>
+	</table>
+	<h3>Study Group Total Star Frequencies</h3>
+	<table class="table table-hover table-bordered">
+		<thead>
+			<tr>
+				<th class="gray white-font shadow-text">1 Star</th>
+				<th class="gray white-font shadow-text">2 Star</th>
+				<th class="gray white-font shadow-text">3 Star</th>
+				<th class="gray white-font shadow-text">4 Star</th>
+				<th class="gray white-font shadow-text">5 Star</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr height="60px">
+				<td class="td-large"><%= Rating.get_all_study_group_ratings(@month).filter_by_star(1).length %></td>
+				<td class="td-large"><%= Rating.get_all_study_group_ratings(@month).filter_by_star(2).length %></td>
+				<td class="td-large"><%= Rating.get_all_study_group_ratings(@month).filter_by_star(3).length %></td>
+				<td class="td-large"><%= Rating.get_all_study_group_ratings(@month).filter_by_star(4).length %></td>
+				<td class="td-large"><%= Rating.get_all_study_group_ratings(@month).filter_by_star(5).length %></td>
+			</tr>
+			<tr height="60px">
+				<td class="td-large"><%= Rating.get_all_study_group_ratings(@month).star_percent(1) %>%</td>
+				<td class="td-large"><%= Rating.get_all_study_group_ratings(@month).star_percent(2) %>%</td>
+				<td class="td-large"><%= Rating.get_all_study_group_ratings(@month).star_percent(3) %>%</td>
+				<td class="td-large"><%= Rating.get_all_study_group_ratings(@month).star_percent(4) %>%</td>
+				<td class="td-large"><%= Rating.get_all_study_group_ratings(@month).star_percent(5) %>%</td>
+			</tr>
+		</tbody>
+	</table>
+	<h3>Portfolio Support Total Star Frequencies</h3>
+	<table class="table table-hover table-bordered">
+		<thead>
+			<tr>
+				<th class="gray white-font shadow-text">1 Star</th>
+				<th class="gray white-font shadow-text">2 Star</th>
+				<th class="gray white-font shadow-text">3 Star</th>
+				<th class="gray white-font shadow-text">4 Star</th>
+				<th class="gray white-font shadow-text">5 Star</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr height="75px">
+				<td class="td-large"><%= Rating.get_all_one_on_one_ratings(@month).filter_by_star(1).length %></td>
+				<td class="td-large"><%= Rating.get_all_one_on_one_ratings(@month).filter_by_star(2).length %></td>
+				<td class="td-large"><%= Rating.get_all_one_on_one_ratings(@month).filter_by_star(3).length %></td>
+				<td class="td-large"><%= Rating.get_all_one_on_one_ratings(@month).filter_by_star(4).length %></td>
+				<td class="td-large"><%= Rating.get_all_one_on_one_ratings(@month).filter_by_star(5).length %></td>
+			</tr>
+			<tr height="75px">
+				<td class="td-large"><%= Rating.get_all_one_on_one_ratings(@month).star_percent(1) %>%</td>
+				<td class="td-large"><%= Rating.get_all_one_on_one_ratings(@month).star_percent(2) %>%</td>
+				<td class="td-large"><%= Rating.get_all_one_on_one_ratings(@month).star_percent(3) %>%</td>
+				<td class="td-large"><%= Rating.get_all_one_on_one_ratings(@month).star_percent(4) %>%</td>
+				<td class="td-large"><%= Rating.get_all_one_on_one_ratings(@month).star_percent(5) %>%</td>
+			</tr>
+		</tbody>
+	</table>
 <% end %>

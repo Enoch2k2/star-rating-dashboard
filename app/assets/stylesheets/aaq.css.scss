@@ -10,6 +10,17 @@
   color: white;
 }
 
+td.td-large {
+  text-align: center;
+  font-size: 30px;
+  padding-top: 30px;
+}
+
+td.td-medium {
+  text-align: center;
+  font-size: 20px;
+}
+
 @media screen and (max-width: 606px){
   h1 {
     font-size: 1.75em;

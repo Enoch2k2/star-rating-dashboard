@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   # devise_for :users
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   root to: "application#home"
+  post "/search", to: "application#search", as: "home_search"
 
   get '/users/add-user/:username', to: 'users#edit', as: "add_user"
   patch '/users/add-user/:username', to: 'users#update'
